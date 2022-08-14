@@ -89,7 +89,7 @@ func (db *Database) InsertUser(name, email, password string) error {
 		return err
 	}
 
-	stmt := `INSERT INTO users (name, email, password, created)
+	stmt := `INSERT INTO users (name, email, hashed_password, created)
 	VALUES(?, ?, ?, UTC_TIMESTAMP())`
 
 	_, err = db.Exec(stmt, name, email, hashedPassword)
@@ -106,7 +106,7 @@ func (db *Database) VerifyUser(email, password string) (int, error) {
 	var id int
 	var hashedPassword []byte
 
-	row := db.QueryRow("SELECT id, password FROM users WHERE email = ?", email)
+	row := db.QueryRow("SELECT id, hashed_password FROM users WHERE email = ?", email)
 	err := row.Scan(&id, &hashedPassword)
 	if err == sql.ErrNoRows {
 		return 0, ErrInvalidCredentials

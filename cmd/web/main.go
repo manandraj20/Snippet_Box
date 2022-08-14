@@ -14,7 +14,7 @@ import (
 
 func main() {
 	addr := flag.String("addr", ":4000", "HTTP network address")
-	dsn := flag.String("dsn", "sb:pass@/snippetbox?parseTime=true", "MySQL DSN")
+	dsn := flag.String("dsn", "web:fail@JEE20@/snippetbox?parseTime=true", "MySQL DSN")
 	htmlDir := flag.String("html-dir", "./ui/html", "Path to HTML templates")
 	secret := flag.String("secret", "s6Nd%+pPbnzHbS*+9Pk8qGWhTzbpa@ge", "Secret key")
 	staticDir := flag.String("static-dir", "./ui/static", "Path to static assets directory")
